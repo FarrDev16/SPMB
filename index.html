@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hitung Mundur</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #1d2b64, #f8cdda);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .countdown {
+      display: flex;
+      gap: 20px;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    .time-box {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .label {
+      display: block;
+      font-size: 0.6em;
+      margin-top: 5px;
+      color: #ffd700;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    @media (max-width: 600px) {
+      .countdown {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>COUNTDOWN SPMB 2025 STTMC</h1>
+
+  <div class="countdown">
+    <div class="time-box">
+      <span id="days">0</span>
+      <span class="label">Hari</span>
+    </div>
+    <div class="time-box">
+      <span id="hours">0</span>
+      <span class="label">Jam</span>
+    </div>
+    <div class="time-box">
+      <span id="minutes">0</span>
+      <span class="label">Menit</span>
+    </div>
+    <div class="time-box">
+      <span id="seconds">0</span>
+      <span class="label">Detik</span>
+    </div>
+  </div>
+
+
+
+  
+  <footer>FARABI DEVELOPMENT</footer>
+
+  <script>
+    const endTime = new Date("June 16, 2025 07:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = endTime - now;
+
+      if (distance <= 0) {
+        document.querySelector("h1").textContent = "Waktu Telah Habis!";
+        document.querySelector(".countdown").style.display = "none";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
+</body>
+</html>
